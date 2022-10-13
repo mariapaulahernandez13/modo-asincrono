@@ -1,4 +1,4 @@
-//dependecia a XMLHttpResquest
+//Dependecia a XMLHttpResquest
 const http = require('xmlhttprequest').XMLHttpRequest
 
 const url = "https://pokeapi.co/api/v2/type"
@@ -40,8 +40,13 @@ function fallo(status){
 }
 
  //Invocar get_data 
- get_data(url).then(function(response){
-    exito(response)
- }).catch(function(error){
-    fallo(Error(error))
- })
+ const f = async function(){
+    try{
+        let response = await get_data(url)
+        exito(response)
+    }catch( status ){
+        fallo(status)
+    }
+ }
+
+ f()
